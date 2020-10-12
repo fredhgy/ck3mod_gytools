@@ -82,17 +82,5 @@ gy_disinherited_trait = {
 	
 }
 
-gy_girl_trait = {
-	index = 5803
-	
-	can_inherit = no
-	can_inherit_from_dynasty = no
-	blocks_from_claim_inheritance = yes
-	blocks_from_claim_inheritance_from_dynasty = yes
-	
-	can_have_children = no
-	fertility = -10
-	
-	liege_opinion = 100
-	
-}
+# gy_girl_trait occupied 5803
+
