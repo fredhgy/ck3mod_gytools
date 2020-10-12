@@ -1,0 +1,1393 @@
+
+namespace = gygirl_invite_courtiers
+
+# Level of the female 
+gygirl_invite_courtiers.0001 = {
+
+	type = character_event
+	title = gygirl_invite_courtiers.0001.title
+	desc = gygirl_invite_courtiers.0001.desc
+	
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+	
+	# 10 prestige
+	option = {
+		name = gygirl_invite_courtiers.0001.a
+		add_prestige = -10
+		trigger_event = {
+			id = gygirl_invite_courtiers.0002
+		}
+	}
+	
+	# 50 prestige
+	option = {
+		name = gygirl_invite_courtiers.0001.b
+		add_prestige = -50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0003
+		}
+	}
+	
+	# 100 prestige
+	option = {
+		name = gygirl_invite_courtiers.0001.c
+		add_prestige = -100
+		trigger_event = {
+			id = gygirl_invite_courtiers.0004
+		}
+	}
+		
+	# limit pool
+	option = {
+		name = gygirl_invite_courtiers.0001.d
+		add_prestige = -100
+		add_piety = -20
+		trigger_event = {
+			id = gygirl_invite_courtiers.0005
+		}
+	}
+	
+	option = {
+		name = gygirl_invite_courtiers.0001.e
+	}
+}
+
+# 10 prestige
+gygirl_invite_courtiers.0002 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0002.title
+	desc = gygirl_invite_courtiers.0002.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			random_traits = yes
+			trait = gy_girl_trait
+			learning = { 6 12 }
+			martial = { 6 12 }
+			prowess = { 6 12 }
+			diplomacy = { 6 12 }
+			stewardship = { 6 12 }
+			intrigue = { 6 12}
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits_list = {
+				count = 1
+				education_diplomacy_4 = { weight = { base = 10 } }
+				education_stewardship_4 = { weight = { base = 10 } }
+				education_intrigue_4 = { weight = { base = 10 } }
+				education_martial_4 = { weight = { base = 10 } }
+				education_learning_4 = { weight = { base = 10} }
+				education_diplomacy_3 = { weight = { base = 20 } }
+				education_stewardship_3 = { weight = { base = 20 } }
+				education_intrigue_3 = { weight = { base = 20 } }
+				education_martial_3 = { weight = { base = 20 } }
+				education_learning_3 = { weight = { base = 20 } }
+				education_diplomacy_2 = { weight = { base = 50 } }
+				education_stewardship_2 = { weight = { base = 50 } }
+				education_intrigue_2 = { weight = { base = 50 } }
+				education_martial_2 = { weight = { base = 50 } }
+				education_learning_2 = { weight = { base = 50 } }
+				education_diplomacy_1 = { weight = { base = 100 } }
+				education_stewardship_1 = { weight = { base = 100 } }
+				education_intrigue_1 = { weight = { base = 100 } }
+				education_martial_1 = { weight = { base = 100 } }
+				education_learning_1 = { weight = { base = 100 } }
+				
+			}
+			random_traits_list = {
+				count = 1
+				beauty_good_3= { weight = { base = 20 } }
+				beauty_good_2= { weight = { base = 50 } }
+				beauty_good_1= { weight = { base = 100 } }
+				physique_good_3 = { weight = { base = 20 } }
+				physique_good_2 = { weight = { base = 50 } }
+				physique_good_1 = { weight = { base = 100 } }
+				intellect_good_3 = { weight = { base = 20 } }
+				intellect_good_2 = { weight = { base = 50 } }
+				intellect_good_1 = { weight = { base = 100 } }
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = education_diplomacy_4
+						has_trait = education_stewardship_4
+						has_trait = education_intrigue_4
+						has_trait = education_martial_4
+						has_trait = education_learning_4
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						OR = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				
+				if = {
+					limit = {
+						scope:target = {
+							AND = {			
+								has_trait = beauty_good_3
+								has_trait = physique_good_3
+								has_trait = intellect_good_3
+							}
+						}
+					}
+					send_interface_toast = {
+						title = gygirl_six_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_six_stars_title_text
+						add_piety = 5
+						add_prestige = 10
+					}
+					
+				}
+				else = {
+					send_interface_toast = {
+						title = gygirl_five_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_five_stars_title_text
+						add_piety = 1
+						add_prestige = 10
+					}
+					
+				}	
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_four_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_four_stars_title_text
+					add_prestige = 10
+				}
+			}
+			
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0002.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0002.b
+		add_gold = 10
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}	
+		}
+	}
+	
+}
+
+# 50 prestige
+gygirl_invite_courtiers.0003 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0003.title
+	desc = gygirl_invite_courtiers.0003.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			trait = gy_girl_trait
+			random_traits = yes
+			random_traits_list = {
+				count = 1
+				compassionate = {}
+				gregarious = {}
+				ambitious = {}
+				generous = {}
+				patient = {}
+				brave = {}
+				just = {}
+				diligent = {}
+				temperate = {}
+			}
+			learning = { 8 16 }
+			martial = { 8 16 }
+			prowess = { 8 16 }
+			diplomacy = { 8 16 }
+			stewardship = { 8 16 }
+			intrigue = { 8 16 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits_list = {
+				count = 1
+				education_diplomacy_4 = {}
+				education_stewardship_4 = {}
+				education_intrigue_4 = {}
+				education_martial_4 = {}
+				education_learning_4 = {}
+				education_diplomacy_3 = {}
+				education_stewardship_3 = {}
+				education_intrigue_3 = {}
+				education_martial_3 = {}
+				education_learning_3 = {}
+				education_diplomacy_2 = {}
+				education_stewardship_2 = {}
+				education_intrigue_2 = {}
+				education_martial_2 = {}
+				education_learning_2 = {}
+				education_diplomacy_1 = {}
+				education_stewardship_1 = {}
+				education_intrigue_1 = {}
+				education_martial_1 = {}
+				education_learning_1 = {}
+				
+			}
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = education_diplomacy_4
+						has_trait = education_stewardship_4
+						has_trait = education_intrigue_4
+						has_trait = education_martial_4
+						has_trait = education_learning_4
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						OR = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				
+				if = {
+					limit = {
+						scope:target = {
+							AND = {			
+								has_trait = beauty_good_3
+								has_trait = physique_good_3
+								has_trait = intellect_good_3
+							}
+						}
+					}
+					send_interface_toast = {
+						title = gygirl_six_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_six_stars_title_text
+						add_piety = 25
+						add_prestige = 50
+					}
+				}
+				else = {
+					send_interface_toast = {
+						title = gygirl_five_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_five_stars_title_text
+						add_piety = 5
+						add_prestige = 50
+					}
+				}	
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_four_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_four_stars_title_text
+					add_prestige = 50
+				}
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0003.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0003.b
+		add_gold = 50
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}		
+		}
+	}
+	
+}
+
+# 100 prestige
+gygirl_invite_courtiers.0004 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0004.title
+	desc = gygirl_invite_courtiers.0004.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 3
+				compassionate = {}
+				gregarious = {}
+				ambitious = {}
+				generous = {}
+				patient = {}
+				brave = {}
+				just = {}
+				diligent = {}
+				temperate = {}
+			}
+			learning = { 10 20 }
+			martial = { 10 20 }
+			prowess = { 10 20 }
+			diplomacy = { 10 20 }
+			stewardship = { 10 20 }
+			intrigue = { 10 20 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits_list = {
+				count = 1
+				education_diplomacy_4 = { weight = { base = 100 } }
+				education_stewardship_4 = { weight = { base = 100 } }
+				education_intrigue_4 = { weight = { base = 100 } }
+				education_martial_4 = { weight = { base = 100 } }
+				education_learning_4 = { weight = { base = 100 } }
+				education_diplomacy_3 = { weight = { base = 50 } }
+				education_stewardship_3 = { weight = { base = 50 } }
+				education_intrigue_3 = { weight = { base = 50 } }
+				education_martial_3 = { weight = { base = 50 } }
+				education_learning_3 = { weight = { base = 50 } }
+				education_diplomacy_2 = { weight = { base = 20 } }
+				education_stewardship_2 = { weight = { base = 20 } }
+				education_intrigue_2 = { weight = { base = 20 } }
+				education_martial_2 = { weight = { base = 20 } }
+				education_learning_2 = { weight = { base = 20 } }
+				education_diplomacy_1 = { weight = { base = 10 } }
+				education_stewardship_1 = { weight = { base = 10 } }
+				education_intrigue_1 = { weight = { base = 10 } }
+				education_martial_1 = { weight = { base = 10 } }
+				education_learning_1 = { weight = { base = 10 } }				
+			}
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = education_diplomacy_4
+						has_trait = education_stewardship_4
+						has_trait = education_intrigue_4
+						has_trait = education_martial_4
+						has_trait = education_learning_4
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						OR = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				
+				if = {
+					limit = {
+						scope:target = {
+							AND = {			
+								has_trait = beauty_good_3
+								has_trait = physique_good_3
+								has_trait = intellect_good_3
+							}
+						}
+					}
+					send_interface_toast = {
+						title = gygirl_six_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_six_stars_title_text
+						add_piety = 50
+						add_prestige = 100
+					}
+					
+				}
+				else = {
+					send_interface_toast = {
+						title = gygirl_five_stars_title			
+						right_icon = scope:target
+						tooltip = gygirl_five_stars_title_text
+						add_piety = 10
+						add_prestige = 100
+					}
+					
+				}	
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_four_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_four_stars_title_text
+					add_prestige = 100
+				}
+			}
+			
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0004.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0004.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}
+
+gygirl_invite_courtiers.0005 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0004.title
+	desc = gygirl_invite_courtiers.0004.desc
+	
+	theme = realm
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+	
+	option = {
+		name = gygirl_invite_courtiers.0005.a
+		remove_short_term_gold = 50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0006
+		}
+	}
+	option = {
+		name = gygirl_invite_courtiers.0005.b
+		remove_short_term_gold = 50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0007
+		}
+	}
+	option = {
+		name = gygirl_invite_courtiers.0005.c
+		remove_short_term_gold = 50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0008
+		}
+	}
+	option = {
+		name = gygirl_invite_courtiers.0005.d
+		remove_short_term_gold = 50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0009
+		}
+	}
+	option = {
+		name = gygirl_invite_courtiers.0005.e
+		remove_short_term_gold = 50
+		trigger_event = {
+			id = gygirl_invite_courtiers.0010
+		}
+	}
+	
+}
+
+# diplomacy girl
+gygirl_invite_courtiers.0006 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0006.title
+	desc = gygirl_invite_courtiers.0006.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			learning = { 10 14 }
+			martial = { 10 14 }
+			prowess = { 0 10 }
+			diplomacy = { 20 24 }
+			stewardship = { 10 14 }
+			intrigue = { 10 14 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits = yes
+			trait = education_diplomacy_4
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = beauty_good_3
+						has_trait = physique_good_3
+						has_trait = intellect_good_3
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						AND = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				send_interface_toast = {
+					title = gygirl_six_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_six_stars_title_text
+					add_piety = 50
+				}
+				
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_five_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_five_stars_title_text
+					add_piety = 10
+				}
+				
+			}	
+		}
+		else = {
+			send_interface_toast = {
+				title = gygirl_four_stars_title			
+				right_icon = scope:target
+				tooltip = gygirl_four_stars_title_text
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0006.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0006.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}
+
+# martial girl
+gygirl_invite_courtiers.0007 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0007.title
+	desc = gygirl_invite_courtiers.0007.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			learning = { 10 14 }
+			martial = { 20 24 }
+			prowess = { 20 28 }
+			diplomacy = { 10 14 }
+			stewardship = { 10 14 }
+			intrigue = { 10 14 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits = yes
+			trait = education_martial_4
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = beauty_good_3
+						has_trait = physique_good_3
+						has_trait = intellect_good_3
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						AND = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				send_interface_toast = {
+					title = gygirl_six_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_six_stars_title_text
+					add_piety = 50
+				}
+				
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_five_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_five_stars_title_text
+					add_piety = 10
+				}
+				
+			}	
+		}
+		else = {
+			send_interface_toast = {
+				title = gygirl_four_stars_title			
+				right_icon = scope:target
+				tooltip = gygirl_four_stars_title_text
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0007.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0007.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}
+
+# stewardship girl
+gygirl_invite_courtiers.0008 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0008.title
+	desc = gygirl_invite_courtiers.0008.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			learning = { 10 14 }
+			martial = { 10 14 }
+			prowess = { 0 10 }
+			diplomacy = { 10 14 }
+			stewardship = { 20 24 }
+			intrigue = { 10 14 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits = yes
+			trait = education_stewardship_4
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = beauty_good_3
+						has_trait = physique_good_3
+						has_trait = intellect_good_3
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						AND = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				send_interface_toast = {
+					title = gygirl_six_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_six_stars_title_text
+					add_piety = 50
+				}
+				
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_five_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_five_stars_title_text
+					add_piety = 10
+				}
+				
+			}	
+		}
+		else = {
+			send_interface_toast = {
+				title = gygirl_four_stars_title			
+				right_icon = scope:target
+				tooltip = gygirl_four_stars_title_text
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0008.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0008.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}
+
+# intrigue girl
+gygirl_invite_courtiers.0009 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0009.title
+	desc = gygirl_invite_courtiers.0009.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			learning = { 10 14 }
+			martial = { 10 14 }
+			prowess = { 0 10 }
+			diplomacy = { 10 14 }
+			stewardship = { 10 14 }
+			intrigue = { 20 24 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits = yes
+			trait = education_intrigue_4
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = beauty_good_3
+						has_trait = physique_good_3
+						has_trait = intellect_good_3
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						AND = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				send_interface_toast = {
+					title = gygirl_six_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_six_stars_title_text
+					add_piety = 50
+				}
+				
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_five_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_five_stars_title_text
+					add_piety = 10
+				}
+				
+			}	
+		}
+		else = {
+			send_interface_toast = {
+				title = gygirl_four_stars_title			
+				right_icon = scope:target
+				tooltip = gygirl_four_stars_title_text
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0009.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0009.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}
+
+# learning girl
+gygirl_invite_courtiers.0010 = {
+	type = character_event
+	title = gygirl_invite_courtiers.0010.title
+	desc = gygirl_invite_courtiers.0010.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	
+	trigger = { exists = capital_province } #If I lost it before I got this event, I shouldn't get a physician
+
+	immediate = {
+		# Create random courtier
+		create_character = {
+			employer = root
+			age = { 16 18 }
+			gender = female
+			learning = { 20 24 }
+			martial = { 10 14 }
+			prowess = { 0 10 }
+			diplomacy = { 10 14 }
+			stewardship = { 10 14 }
+			intrigue = { 10 14 }
+			faith = root.faith
+			culture = root.culture
+			dynasty = generate
+			random_traits = yes
+			trait = education_learning_4
+			trait = gy_girl_trait
+			random_traits_list = {
+				count = 1
+				beauty_good_3= {}
+				beauty_good_2= {}
+				beauty_good_1= {}
+				}
+			random_traits_list = {
+				count = 1
+				physique_good_3 = {}
+				physique_good_2 = {}
+				physique_good_1 = {}
+			}
+			random_traits_list = {	
+				count = 1
+				intellect_good_3 = {}
+				intellect_good_2 = {}
+				intellect_good_1 = {}
+			}
+			random_traits_list = {
+				count = 1
+				tits_small_1 = {}
+				tits_small_2 = {}
+				tits_small_3 = {}
+				tits_big_1 = {}
+				tits_big_2 = {}
+				tits_big_3 = {}
+			}
+			save_scope_as = target
+		}
+		scope:target = {
+			add_trait = albino
+		}
+		if = {
+			limit = {
+				scope:target = {
+					OR = {			
+						has_trait = beauty_good_3
+						has_trait = physique_good_3
+						has_trait = intellect_good_3
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					scope:target = {
+						AND = {			
+							has_trait = beauty_good_3
+							has_trait = physique_good_3
+							has_trait = intellect_good_3
+						}
+					}
+				}
+				send_interface_toast = {
+					title = gygirl_six_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_six_stars_title_text
+					add_piety = 50
+				}
+				
+			}
+			else = {
+				send_interface_toast = {
+					title = gygirl_five_stars_title			
+					right_icon = scope:target
+					tooltip = gygirl_five_stars_title_text
+					add_piety = 10
+				}
+				
+			}	
+		}
+		else = {
+			send_interface_toast = {
+				title = gygirl_four_stars_title			
+				right_icon = scope:target
+				tooltip = gygirl_four_stars_title_text
+			}
+		}
+	}
+	
+	# Hire them
+	option = {
+		name = gygirl_invite_courtiers.0010.a
+		hidden_effect = {
+			scope:actor = {
+				add_hook = {
+					target = scope:target
+					type = strong_test_hook
+				}
+			}
+		}
+
+	}
+
+	# Don't hire them
+	option = {
+		name = gygirl_invite_courtiers.0010.b
+		add_gold = 100
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}			
+		}
+	}
+}

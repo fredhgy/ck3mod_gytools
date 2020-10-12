@@ -1,0 +1,98 @@
+﻿###
+# Indices notes for other modders
+# Reserved 5800-5850 for this mod
+###
+
+# Standard Values
+# @pos_compat_high = 30
+# @pos_compat_medium = 15
+# @pos_compat_low = 5
+
+# @neg_compat_high = -30
+# @neg_compat_medium = -15
+# @neg_compat_low = -5
+
+
+
+gy_iud_trait = {
+	index = 5800
+
+	# unclear which of these options is preferable- fertility could still allow for deliberate event pregnancy
+	can_have_children = no
+	fertility = -10
+
+	stress_gain_mult = 0.1
+	health = -0.1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = gy_iud_trait_desc
+			}
+			desc = gy_iud_trait_character_desc
+		}
+	}
+}
+
+gy_cond_trait = {
+	index = 5801
+
+	# unclear which of these options is preferable- fertility could still allow for deliberate event pregnancy
+	# can_have_children = no
+	fertility = -0.9
+
+	stress_gain_mult = 0.1
+	health = 0.1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = gy_cond_trait_desc
+			}
+			desc = gy_cond_trait_character_desc
+		}
+	}
+}
+
+gy_disinherited_trait = {
+	index = 5802
+	
+	can_inherit = no
+	can_inherit_from_dynasty = no
+	blocks_from_claim_inheritance = yes
+	blocks_from_claim_inheritance_from_dynasty = yes
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = gy_disinherited_trait_desc
+			}
+			desc = gy_disinherited_trait_character_desc
+		}
+	}
+	
+}
+
+gy_girl_trait = {
+	index = 5803
+	
+	can_inherit = no
+	can_inherit_from_dynasty = no
+	blocks_from_claim_inheritance = yes
+	blocks_from_claim_inheritance_from_dynasty = yes
+	
+	can_have_children = no
+	fertility = -10
+	
+	liege_opinion = 100
+	
+}

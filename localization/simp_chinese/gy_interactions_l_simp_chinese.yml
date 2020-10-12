@@ -1,0 +1,113 @@
+﻿l_simp_chinese:
+ gy_set_iud_interaction: "安装节育器{GYTools}"
+ gy_set_iud_interaction_desc: "[recipient.GetShortUINameNoTooltip]将被防止怀孕，直到您另有决定。"
+ 
+ gy_remove_iud_interaction: "移除节育器{GYTools}"
+ gy_remove_iud_interaction_desc: "[recipient.GetShortUINameNoTooltip]将可以怀孕。"
+ 
+ gy_set_cond_interaction: "使用避孕套{GYTools}"
+ gy_set_cond_interaction_desc: "[recipient.GetShortUINameNoTooltip]每次性爱会使用避孕套，直到您另有决定。"
+ 
+ gy_remove_cond_interaction: "弃用避孕套{GYTools}"
+ gy_remove_cond_interaction_desc: "[recipient.GetShortUINameNoTooltip]不再使用避孕套。"
+ 
+ gy_designate_heir_interaction: "指定继承人{GYTools}"
+ gy_designate_heir_interaction_desc: "[recipient.GetShortUINameNoTooltip]将被指定为继承人。"
+ 
+ trait_gy_iud_trait: "佩戴节育器"
+ gy_iud_trait_desc: "这个角色佩戴了节育器。因此无法正常受孕。"
+ gy_iud_trait_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]佩戴了节育器。因此无法正常受孕。"
+ 
+ trait_gy_cond_trait: "使用避孕套"
+ gy_cond_trait_desc: "这个角色在性爱前会使用避孕套，因此女方怀孕的几率大大降低。"
+ gy_cond_trait_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]在性爱前会使用避孕套，因此女方怀孕的几率大大降低。
+ 
+ gy_remove_dynasty: "逐出宗族{GYTools}"
+ gy_remove_dynasty_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]将被逐出宗族，并移除继承权。"
+ gy_remove_dynasty_text: "[ROOT.GetCharacter.GetFirstNameNoTooltip]被逐出宗族，并移除继承权。"
+ 
+ trait_gy_disinherited_trait: "被逐出宗族"
+ gy_disinherited_trait_desc: "这个角色被逐出宗族，无法继承或宣称头衔"
+ gy_disinherited_trait_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]被逐出宗族，无法继承或宣称头衔"
+ 
+ gy_back_dynasty: "召回宗族{GYTools}"
+ gy_back_dynasty_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]将被召回宗族，并恢复继承权。"
+ gy_back_dynasty_text: "[ROOT.GetCharacter.GetFirstNameNoTooltip]被召回宗族，并恢复继承权。"
+ 
+ trait_gy_girl_trait: "召唤美少女"
+ trait_gy_girl_trait_desc: "这个美少女受领主召唤而来，只服从于她的主人"
+ trait_gy_girl_trait_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip]受领主召唤而来，只服从于她的主人"
+
+ gygirl_invite_courtiers_decision: "美少女抽卡{GYTools}"
+ gygirl_invite_courtiers_decision_desc: "关于在我的宅邸里突然出现的那个神秘的温泉，最近，那个神秘出现的泉眼在冒泡？我似乎听到泉眼中在低语着什么话语，在我稍微靠近后，我听到了它的渴求：支付报酬，召唤一个银发少女。"
+ gygirl_invite_courtiers_decision_tooltip: "令人惊讶！"
+ gygirl_invite_courtiers_decision_confirm: "嘿，听起来有点意思，来吧！" 
+  
+ gygirl_invite_courtiers.0001.title: "选择抽卡档位"
+ gygirl_invite_courtiers.0001.desc: "英雄，是时候展现你的虔诚了，请选择你要投入的威望 \n 10威望可获得：普通（高），4星（低），5星（稀有）。必得1随机优良特质 \n 50威望可获得：普通（随机），4星（随机），5星（随机）。必得1随机美貌，1身体或智力特质 \n 100威望可获得：普通（中），4星（高），5星（低），6星（稀有）。必得1随机美貌，1身体，1智力特质"
+ gygirl_invite_courtiers.0001.a: "10威望就够了"
+ gygirl_invite_courtiers.0001.b: "50威望出梦想"
+ gygirl_invite_courtiers.0001.c: "100威望一发入魂"
+ gygirl_invite_courtiers.0001.d: "100威望+20虔诚限定池"
+ gygirl_invite_courtiers.0001.e: "算了"
+
+ gygirl_invite_courtiers.0002.title: "10威望的美少女"
+ gygirl_invite_courtiers.0002.desc: "10威望的美少女，就这。"
+ gygirl_invite_courtiers.0002.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0002.b: "把[target.GetFirstName]重新丢入泉水，返还10金币"
+ 
+ gygirl_invite_courtiers.0003.title: "50威望的美少女"
+ gygirl_invite_courtiers.0003.desc: "50威望的美少女，就这。"
+ gygirl_invite_courtiers.0003.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0003.b: "把[target.GetFirstName]重新丢入泉水，返还50金币"
+ 
+ gygirl_invite_courtiers.0004.title: "100威望的美少女"
+ gygirl_invite_courtiers.0004.desc: "100威望的美少女，就这。"
+ gygirl_invite_courtiers.0004.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0004.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+ 
+ gygirl_invite_courtiers.0005.title: "限定美少女"
+ gygirl_invite_courtiers.0005.desc: "选择你想召唤的美少女类别 \n 限定召唤需要再次支付50金币，必得4星以上少女"
+ gygirl_invite_courtiers.0005.a: "外交美少女"
+ gygirl_invite_courtiers.0005.b: "军事美少女"
+ gygirl_invite_courtiers.0005.c: "管理美少女"
+ gygirl_invite_courtiers.0005.d: "谋略美少女"
+ gygirl_invite_courtiers.0005.e: "学识美少女"
+ 
+ gygirl_invite_courtiers.0006.title: "外交美少女"
+ gygirl_invite_courtiers.0006.desc: "外交美少女，就这。"
+ gygirl_invite_courtiers.0006.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0006.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+ 
+ gygirl_invite_courtiers.0007.title: "军事美少女"
+ gygirl_invite_courtiers.0007.desc: "军事美少女，就这。"
+ gygirl_invite_courtiers.0007.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0007.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+
+ gygirl_invite_courtiers.0008.title: "管理美少女"
+ gygirl_invite_courtiers.0008.desc: "管理美少女，就这。"
+ gygirl_invite_courtiers.0008.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0008.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+
+ gygirl_invite_courtiers.0009.title: "谋略美少女"
+ gygirl_invite_courtiers.0009.desc: "谋略美少女，就这。"
+ gygirl_invite_courtiers.0009.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0009.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+
+ gygirl_invite_courtiers.0010.title: "学识美少女"
+ gygirl_invite_courtiers.0010.desc: "学识美少女，就这。"
+ gygirl_invite_courtiers.0010.a: "[target.GetFirstName] ，留在我身边吧。"
+ gygirl_invite_courtiers.0010.b: "把[target.GetFirstName]重新丢入泉水，返还100金币"
+
+ 
+ gygirl_four_stars_title: "你获得了4星少女[target.GetFirstName]！"
+ gygirl_four_stars_title_text: "[target.GetFirstName]是名强力的4星少女，你获得了威望返还"
+ gygirl_five_stars_title: "你获得了5星少女[target.GetFirstName]！"
+ gygirl_five_stars_title_text: "[target.GetFirstName]是名强力的5星少女，你获得了威望返还，并获得10%虔诚"
+ gygirl_six_stars_title: "你获得了6星少女[target.GetFirstName]！"
+ gygirl_six_stars_title_text: "[target.GetFirstName]是名强力的6星少女，你获得了威望返还，并获得50%虔诚"
+ 
+ gy_optroop_interaction: "征召御用禁卫军{GYTools}"
+ gy_optroop_interaction_desc: "征召一支只忠于你的无敌大军"
+ op_gy_troops: "御用禁卫军"
+ 

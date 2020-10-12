@@ -1,0 +1,267 @@
+﻿#######
+### RULES/SIMPLE INTERACTIONS
+#######
+
+# Set IUD by Guangyu
+gy_set_iud_interaction = {
+	category = interaction_category_friendly
+	common_interaction = yes
+	interface_priority = 80
+
+	desc = gy_set_iud_interaction_desc
+
+	auto_accept = yes
+	is_shown = {
+		scope:recipient = {
+			NOT = { has_trait = gy_iud_trait }
+			is_adult = yes
+			is_female = yes
+		}
+	}
+
+	on_accept = {
+		scope:recipient = { 
+			add_trait = gy_iud_trait
+		}
+	}
+}
+
+# Remove IUD by Guangyu
+gy_remove_iud_interaction = {
+	category = interaction_category_friendly
+	common_interaction = no
+	interface_priority = 80
+
+	desc = gy_remove_iud_interaction_desc
+
+	auto_accept = yes
+	is_shown = {
+		scope:recipient = { has_trait = gy_iud_trait }
+	}
+
+	on_accept = {
+		scope:recipient = { remove_trait = gy_iud_trait }
+	}
+}
+
+# Use Condom by Guangyu
+gy_set_cond_interaction = {
+	category = interaction_category_friendly
+	common_interaction = yes
+	interface_priority = 80
+
+	desc = gy_set_cond_interaction_desc
+
+	auto_accept = yes
+	is_shown = {
+		scope:recipient = { 
+			this = scope:actor
+			NOT = { has_trait = gy_cond_trait }
+			is_adult = yes
+			is_male = yes
+		}
+	}
+
+	on_accept = {
+		scope:actor = { 
+			add_trait = gy_cond_trait
+		}
+	}
+}
+
+# Remove Condom by Guangyu
+gy_remove_cond_interaction = {
+	category = interaction_category_friendly
+	common_interaction = no
+	interface_priority = 80
+
+	desc = gy_remove_cond_interaction_desc
+
+	auto_accept = yes
+	is_shown = {
+		scope:actor = { 
+			has_trait = gy_cond_trait
+		}
+		scope:recipient = { 
+			this = scope:actor
+		}
+	}
+
+	on_accept = {
+		scope:actor = { remove_trait = gy_cond_trait }
+	}
+}
+
+# designate heir by Guangyu
+gy_designate_heir_interaction = {
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	interface_priority = 80
+	
+	desc = gy_designate_heir_interaction_desc
+	
+	auto_accept = yes
+	is_shown = {
+		NOT = {
+			scope:recipient = scope:actor
+			scope:recipient = scope:actor.designated_heir
+		}
+		
+		scope:recipient = {
+			house = scope:actor.house
+		}
+	}
+	
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				title = designate_heir_interaction_notification
+
+				left_icon = scope:actor					
+				right_icon = scope:recipient
+
+				set_designated_heir = scope:recipient
+			}
+		}
+	}
+	
+}
+
+# remove from dynasty by Guangyu
+gy_remove_dynasty = {
+	category = interaction_category_diplomacy
+	desc = gy_remove_dynasty_desc
+	common_interaction = yes
+	
+	auto_accept = yes
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+
+	is_shown = {
+		scope:recipient = {
+			dynasty = scope:actor.dynasty
+			NOT = { 
+				this = scope:actor
+			}
+		}
+		scope:actor = {
+			is_ai = no
+		}
+	}
+	
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				title = gy_remove_dynasty
+
+				left_icon = scope:actor					
+				right_icon = scope:recipient
+
+				tooltip = gy_remove_dynasty_text
+
+				scope:recipient = { 
+					set_to_lowborn = yes
+					add_trait = gy_disinherited_trait
+				}
+			}
+		}
+	}
+	auto_accept = yes
+	
+	ai_will_do = 0
+}
+
+# back to dynasty by Guangyu
+gy_back_dynasty = {
+	category = interaction_category_diplomacy
+	desc = gy_remove_dynasty_desc
+	common_interaction = yes
+	
+	auto_accept = yes
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+
+	is_shown = {
+		scope:recipient = {
+			has_trait = gy_disinherited_trait
+			NOT = { 
+				this = scope:actor
+			}
+		}
+		scope:actor = {
+			is_ai = no
+		}
+	}
+	
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				title = gy_remove_dynasty
+
+				left_icon = scope:actor					
+				right_icon = scope:recipient
+
+				tooltip = gy_remove_dynasty_text
+
+				scope:recipient = { 
+					remove_trait = gy_disinherited_trait
+				}
+				if = {
+					limit = {
+						scope:recipient.father.dynasty = scope:actor.dynasty
+					}
+					scope:recipient = {
+						set_house = scope:recipient.father.house
+					}
+				}
+				else if = {
+					limit = {
+						scope:recipient.mother.dynasty = scope:actor.dynasty
+					}
+					scope:recipient = {
+						set_house = scope:recipient.mother.house
+					}
+				}
+			}
+		}
+	}
+	auto_accept = yes
+	
+	ai_will_do = 0
+}
+
+# call op troops by Guangyu
+gy_optroop_interaction = { 
+	category = interaction_category_diplomacy
+	common_interaction = yes
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	desc = gy_optroop_interaction_desc
+	
+	is_shown = { 
+		scope:recipient = scope:actor
+		scope:actor = {
+			is_ai = no
+		}
+	}
+	
+	on_accept = {
+		scope:recipient = {
+			spawn_army = {
+				levies = 0
+				men_at_arms = {
+					type = op_gy_troops
+					stacks = 1
+				}
+				location = scope:recipient.capital_province
+				inheritable = no
+				uses_supply = no
+				name = op_gy_troops
+			}
+		}
+	}
+	
+	auto_accept = yes
+	
+	ai_will_do = 0
+}
